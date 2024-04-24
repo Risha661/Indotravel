@@ -52,9 +52,19 @@
     minutesUnitsElement.textContent = 'минут';
 }
 
+if (timer.days <= 0 && timer.hours <= '00' && timer.minutes <= '00') {
+  const heroTimer = document.querySelector('.hero__timer');
+  const heroText = document.querySelector('.hero__text');
+  if (heroText && heroTimer) {
+    heroText.remove();
+    heroTimer.remove();
+  }
+
+}
+
     const intervalId = setTimeout(start, 60000);
   }
   start();
 };
 
-timer('2024/05/15 20:00');
+timer('2024/05/21 18:00');
