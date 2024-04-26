@@ -1,4 +1,6 @@
 import { timer } from './modules/timer.js';
+import './modules/acc.js';
+import './modules/tabs.js';
 
 {
   const init = () => {
