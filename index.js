@@ -1,6 +1,7 @@
 import { timer } from './modules/timer.js';
 import './modules/acc.js';
 import './modules/tabs.js';
+import './modules/burger.js';
 
 {
   const init = () => {
