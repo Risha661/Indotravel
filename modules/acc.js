@@ -2,6 +2,7 @@ const items = document.querySelectorAll('.travel__item');
 const buttons = document.querySelectorAll('.travel__item-title');
 const textWrapper = document.querySelectorAll('.travel__item-text-wrapper');
 
+items[0].classList.toggle('travel__item_active');
 buttons.forEach((btn, index) => {
   btn.addEventListener('click', () => {
     for( let i = 0; i < items.length; i += 1) {
