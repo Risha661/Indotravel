@@ -1,6 +1,6 @@
-const items = document.querySelectorAll('.travel__item');
-const buttons = document.querySelectorAll('.travel__item-title');
-const textWrapper = document.querySelectorAll('.travel__item-text-wrapper');
+export const items = document.querySelectorAll('.travel__item');
+export const buttons = document.querySelectorAll('.travel__item-title');
+export const textWrapper = document.querySelectorAll('.travel__item-text-wrapper');
 
 items[0].classList.toggle('travel__item_active');
 buttons.forEach((btn, index) => {

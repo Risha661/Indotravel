@@ -1,7 +1,14 @@
-import { timer } from './modules/timer.js';
-import './modules/acc.js';
-import './modules/tabs.js';
+import {timer} from './modules/timer.js';
 import './modules/burger.js';
+import './modules/scroll.js';
+
+const loadGoods = async () => {
+  const result = await fetch('db.json');
+  const data = await result.json();
+  console.log('data', data);
+}
+
+loadGoods();
 
 {
   const init = () => {
@@ -10,3 +17,4 @@ import './modules/burger.js';
 
   init();
 }
+
