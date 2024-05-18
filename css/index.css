@@ -617,6 +617,7 @@ p {
 .header__menu_active {
 		opacity: 1;
 		z-index: 1;
+		-o-transition: 0.5s;
 }
 
 .header__menu-button {
@@ -2799,6 +2800,13 @@ p {
 				height: 11px;
 				background: url("../img/hero/menu_mob.svg") center/contain no-repeat;
 		}
+
+		.header__menu-button_click {
+			width: 22px;
+	    height: 22px;
+	    background: url("../img/hero/icons8-cross-64.png") center/contain no-repeat;
+      transition: 0.5s;
+	}
 
 		.header__list {
 				gap: 23px;
