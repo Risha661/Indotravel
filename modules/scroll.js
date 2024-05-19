@@ -17,16 +17,18 @@ document.body.append(fly);
 
 const calcPositionFly = () => {
   if (window.innerWidth >= 758) {
-    const maxHeight = docEl.scrollHeight - fly.clientHeight;
-    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const percentScroll = (window.pageYOffset * 100/ maxScroll) * 100;
-    let top = percentScroll / 100;
-  
-    fly.style.transform = `translateY(-${top * 100}%)`;
+    const scrollHeight = docEl.scrollHeight;
+    const clientHeight = window.innerHeight;
+    const scrollTop = window.scrollY;
+
+    const screenHeight = clientHeight - fly.clientHeight;
+    const progress = scrollTop / (scrollHeight - clientHeight);
+    const translateY = screenHeight * progress;
+
+    fly.style.transform = `translateY(-${translateY}px)`;
   } else {
     fly.style.display = "none";
   }
-  
 };
 
 window.addEventListener('scroll', calcPositionFly);
