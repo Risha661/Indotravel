@@ -2,7 +2,6 @@ import {timer} from './modules/timer.js';
 import './modules/burger.js';
 import './modules/scroll.js';
 import {renderGoods, loadGoods} from './modules/render.js';
-import './modules/listener.js';
 
 fetch('./db.json');
 
