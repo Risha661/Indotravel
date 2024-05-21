@@ -1,16 +1,10 @@
 import {timer} from './modules/timer.js';
 import './modules/burger.js';
 import './modules/scroll.js';
-import {renderGoods} from'./modules/render.js';
+import {renderGoods, loadGoods} from './modules/render.js';
+import './modules/listener.js';
 
 fetch('./db.json');
-
-const loadGoods = async (cb) => {
-  const result = await fetch('db.json');
-  const data = await result.json();
-
-  cb(data);
-}
 
 loadGoods(renderGoods);
 
