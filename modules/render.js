@@ -1,8 +1,12 @@
-export let datesSelect = document.getElementById('reservation__date');
+export let datesSelect = document.getElementById('reservation__date'); //полная форма бронирования
 export let peopleSelect = document.getElementById('reservation__people');
-export let datesForm = document.getElementById('tour__date');
+
+export let datesForm = document.getElementById('tour__date'); //первая краткая форма бронирования
 export let peopleSelectForm = document.getElementById('tour__people');
-console.log(datesForm);
+
+export let reservationDate = document.querySelector('.reservation__data'); //Информация о бронировании и цена
+export const reservationInfoContainer = document.querySelector('.reservation__info');
+export let priceDate = document.querySelector('.reservation__price');
 
 export const loadGoods = async (cb) => {
   const result = await fetch('db.json');
@@ -54,14 +58,29 @@ export const renderGoods = (data) => {
     }
   });
 
+  reservationDate.innerHTML = '';
+  priceDate.innerHTML = '';
+  const reservationDateNew = document.createElement('p');
+  reservationDateNew.classList.add('reservation__data');
+  reservationDateNew.textContent = 'Для бронирования необходимо выбрать дату';
+  if (reservationInfoContainer.firstChild) {
+    reservationInfoContainer.insertBefore(reservationDateNew, reservationInfoContainer.firstChild);
+  } else {
+    reservationInfoContainer.appendChild(reservationDateNew);
+  }
+
   datesSelect.addEventListener('click', () => {
     const selectedDate = datesSelect.value;
+
     peopleSelect.value = '';
     data.forEach(item => {
 
       if (selectedDate === item.date) {
       peopleSelect.value = '';
       peopleSelect.innerHTML = '';
+
+      reservationDateNew.value = item.date;
+      reservationDateNew.textContent = item.date;
 
       for (let i = item['min-people']; i <= item['max-people']; i++) {
         const option = document.createElement('option');
@@ -89,7 +108,25 @@ export const renderGoods = (data) => {
         }
       }
     });
-  })
+  });
+
+  const reservationPrice = document.createElement('p');
+  reservationPrice.classList.add('reservation__price');
+  reservationPrice.textContent = '0₽';
+  reservationInfoContainer.append(reservationPrice);
+
+  peopleSelect.addEventListener('click', () => {
+    const selectedDate = datesSelect.value;
+    const selectedPeople = parseInt(peopleSelect.value);
+    let totalPrice = 0;
+  
+    data.forEach(item => {
+      if (selectedDate === item.date) {
+        totalPrice = selectedPeople * item.price;
+      }
+    });
+    reservationPrice.textContent = `${totalPrice}₽`;
+  });
 };
 
 
