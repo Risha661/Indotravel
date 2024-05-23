@@ -78,6 +78,9 @@ export const renderGoods = (data) => {
       if (selectedDate === item.date) {
       peopleSelect.value = '';
       peopleSelect.innerHTML = '';
+      const optionFirst = document.createElement('option');
+      optionFirst.textContent = 'Количество человек';
+      peopleSelect.append(optionFirst);
 
       reservationDateNew.value = item.date;
       reservationDateNew.textContent = item.date;
@@ -86,7 +89,6 @@ export const renderGoods = (data) => {
         const option = document.createElement('option');
         option.value = i;
         option.textContent = option.value;
-        peopleSelect.append('Количество человек');
         peopleSelect.append(option);
       }
       }
@@ -115,16 +117,22 @@ export const renderGoods = (data) => {
   reservationPrice.textContent = '0₽';
   reservationInfoContainer.append(reservationPrice);
 
-  peopleSelect.addEventListener('click', () => {
+  peopleSelect.addEventListener('change', () => {
     const selectedDate = datesSelect.value;
     const selectedPeople = parseInt(peopleSelect.value);
     let totalPrice = 0;
-  
+
     data.forEach(item => {
       if (selectedDate === item.date) {
-        totalPrice = selectedPeople * item.price;
+        if (!isNaN(selectedPeople)) {
+          totalPrice = selectedPeople * item.price;
+        } else {
+          totalPrice = 0;
+        }
       }
-    });
+    }
+
+  );
     reservationPrice.textContent = `${totalPrice}₽`;
   });
 };
