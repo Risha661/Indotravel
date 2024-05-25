@@ -1,12 +1,13 @@
-export let datesSelect = document.getElementById('reservation__date'); //полная форма бронирования
-export let peopleSelect = document.getElementById('reservation__people');
+let datesSelect = document.getElementById('reservation__date'); //полная форма бронирования
+let peopleSelect = document.getElementById('reservation__people');
 
-export let datesForm = document.getElementById('tour__date'); //первая краткая форма бронирования
-export let peopleSelectForm = document.getElementById('tour__people');
+let datesForm = document.getElementById('tour__date'); //первая краткая форма бронирования
+let peopleSelectForm = document.getElementById('tour__people');
 
-export let reservationDate = document.querySelector('.reservation__data'); //Информация о бронировании и цена
-export const reservationInfoContainer = document.querySelector('.reservation__info');
-export let priceDate = document.querySelector('.reservation__price');
+let reservationDate = document.querySelector('.reservation__data'); //Информация о бронировании и цена
+const reservationInfoContainer = document.querySelector('.reservation__info');
+let priceDate = document.querySelector('.reservation__price');
+
 
 export const loadGoods = async (cb) => {
   const result = await fetch('db.json');
@@ -16,30 +17,15 @@ export const loadGoods = async (cb) => {
 }
 
 export const renderGoods = (data) => {
-  const dateToRemove = datesForm.querySelector('option[value="4.02 - 18.02"]');
-  const optionToRemove = datesSelect.querySelector('option[value="4.02 - 18.02"]');
-  if (optionToRemove) {
-    datesSelect.removeChild(optionToRemove);
-    datesForm.removeChild(dateToRemove);
-  }
-  const dateToRemove1 = datesForm.querySelector('option[value="7.02 - 21.02"]');
-  const optionToRemove1 = datesSelect.querySelector('option[value="7.02 - 21.02"]');
-  if (optionToRemove1) {
-    datesSelect.removeChild(optionToRemove1);
-    datesForm.removeChild(dateToRemove1);
-  }
-  const dateToRemove2 = datesForm.querySelector('option[value="12.02 - 26.02"]');
-  const optionToRemove2 = datesSelect.querySelector('option[value="12.02 - 26.02"]');
-  if (optionToRemove2) {
-    datesSelect.removeChild(optionToRemove2);
-    datesForm.removeChild(dateToRemove2);
-  }
-  const dateToRemove3 = datesForm.querySelector('option[value="20.02 - 6.03"]');
-  const optionToRemove3 = datesSelect.querySelector('option[value="20.02 - 6.03"]');
-  if (optionToRemove3) {
-    datesSelect.removeChild(optionToRemove3);
-    datesForm.removeChild(dateToRemove3);
-  }
+  datesForm.innerHTML = '';
+  const datesFormText = document.createElement('option');
+  datesFormText.textContent = 'Выбери дату';
+  datesForm.append(datesFormText);
+
+  datesSelect.innerHTML = '';
+  const datesSelectText = document.createElement('option');
+  datesSelectText.textContent = 'Дата путешествия';
+  datesSelect.append(datesSelectText);
 
   data.forEach((item, index) => {
     const newOption = document.createElement('option');
@@ -60,9 +46,11 @@ export const renderGoods = (data) => {
 
   reservationDate.innerHTML = '';
   priceDate.innerHTML = '';
+
   const reservationDateNew = document.createElement('p');
   reservationDateNew.classList.add('reservation__data');
   reservationDateNew.textContent = 'Для бронирования необходимо выбрать дату';
+
   if (reservationInfoContainer.firstChild) {
     reservationInfoContainer.insertBefore(reservationDateNew, reservationInfoContainer.firstChild);
   } else {
@@ -74,7 +62,6 @@ export const renderGoods = (data) => {
 
     peopleSelect.value = '';
     data.forEach(item => {
-
       if (selectedDate === item.date) {
       peopleSelect.value = '';
       peopleSelect.innerHTML = '';
@@ -99,6 +86,10 @@ export const renderGoods = (data) => {
     const selectedDateForm = datesForm.value;
     peopleSelectForm.value = '';
     peopleSelectForm.innerHTML = '';
+
+    const peopleSelectFormText = document.createElement('option');
+    peopleSelectFormText.textContent = 'Количество человек';
+    peopleSelectForm.append(peopleSelectFormText);
   
     data.forEach(item => {
       if (selectedDateForm === item.date) {
@@ -131,11 +122,7 @@ export const renderGoods = (data) => {
         }
       }
     }
-
   );
     reservationPrice.textContent = `${totalPrice}₽`;
   });
 };
-
-
-
