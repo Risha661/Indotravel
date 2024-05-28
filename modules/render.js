@@ -8,13 +8,37 @@ let reservationDate = document.querySelector('.reservation__data'); //Инфор
 const reservationInfoContainer = document.querySelector('.reservation__info');
 let priceDate = document.querySelector('.reservation__price');
 
+export const loadGoods = (callback) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open('GET', 'db.json');
+  console.log('load');
+  xhr.addEventListener('load', () => {
+    const data = JSON.parse(xhr.response);
+    callback(data);
+  });
 
-export const loadGoods = async (cb) => {
-  const result = await fetch('db.json');
-  const data = await result.json();
-  cb(data);
-  return data;
-}
+  xhr.addEventListener('error', () => {
+    console.log('error');
+  });
+
+  xhr.send();
+};
+
+const sentData = (body, callback) => {
+  const xhr = new XMLHttpRequest();
+  xhr.open('POST', 'https://jsonplaceholder.typicode.com/posts');
+  console.log('load');
+  xhr.addEventListener('load', () => {
+    const data = JSON.parse(xhr.response);
+    callback(data);
+  });
+
+  xhr.addEventListener('error', () => {
+    console.log('error');
+  });
+
+  xhr.send(JSON.stringify(body));
+};
 
 export const renderGoods = (data) => {
   datesForm.innerHTML = '';
@@ -126,3 +150,31 @@ export const renderGoods = (data) => {
     reservationPrice.textContent = `${totalPrice}₽`;
   });
 };
+
+const form = document.querySelector('.reservation__form');
+const footerForm = document.querySelector('.footer__form');
+const footerTitle = document.querySelector('.footer__form-title');
+const footerText = document.querySelector('.footer__text');
+const footerDiv = document.querySelector('.footer__input-wrap');
+
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  sentData({
+    title: form.querySelector('.reservation__input_name').value,
+    body: form.querySelector('.reservation__input').value,
+  }, (data) => {
+    form.textContent = `Бронирование успешно выполнено! Оператор свяжется с Вами в ближайшее время!`;
+  });
+});
+
+footerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  sentData({
+    mail: footerForm.querySelector('.footer__input').value,
+  }, (data) => {
+    footerTitle.textContent = `Ваша заявка успешно отправлена`;
+    footerText.textContent = `Наши менеджеры свяжутся с вами в течение 3-х рабочих дней`;
+    footerDiv.innerHTML = '';
+  });
+
+});
