@@ -16,7 +16,6 @@ const url = 'db.json';
 export const loadGoods = async (callback) => {
   const xhr = new XMLHttpRequest();
   xhr.open('GET', url);
-  console.log('load');
   xhr.addEventListener('load', () => {
     const data = JSON.parse(xhr.response);
     callback(data);
@@ -32,7 +31,6 @@ export const loadGoods = async (callback) => {
 const sentData = (body, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.open('POST', 'https://jsonplaceholder.typicode.com/posts');
-  console.log('load');
   xhr.addEventListener('load', () => {
     const data = JSON.parse(xhr.response);
     callback(data);
@@ -155,14 +153,10 @@ export const renderGoods = (data) => {
     reservationPrice.textContent = `${totalPrice}₽`;
   });
 };
-
 reservationBtn.setAttribute('data-id', 'reservation__button');
 
 
-reservationBtn.addEventListener('click', async () => {
-  const result = await loadGoods(showModal);
-  console.log(result);
-});
+
 // reservationBtn.addEventListener('click', ({target}) => {
 //   if(target.classList.contains('open')) {
 //     fetchRequest(`${'db.json'}${target.dataset.id}`, {
@@ -170,15 +164,25 @@ reservationBtn.addEventListener('click', async () => {
 //     });
 //   }
 // });
+reservationBtn.addEventListener('click', async () => {
+  const result = await loadGoods(showModal);
+  });
+
 
 const form = document.querySelector('.reservation__form');
 const footerForm = document.querySelector('.footer__form');
 const footerTitle = document.querySelector('.footer__form-title');
 const footerText = document.querySelector('.footer__text');
 const footerDiv = document.querySelector('.footer__input-wrap');
+let title = document.querySelector('.reservation__input_name').value;
+let body = document.querySelector('.reservation__input').value;
+let date = datesSelect.value;
+let countPeople = peopleSelect.value;
+  console.log(title, body, countPeople, date);
 
 form.addEventListener('submit', (e) => {
   e.preventDefault();
+
   sentData({
     title: form.querySelector('.reservation__input_name').value,
     body: form.querySelector('.reservation__input').value,

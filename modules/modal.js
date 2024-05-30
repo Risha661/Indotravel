@@ -18,11 +18,11 @@ const showModal = (data) => {
   modalTitle.classList.add('modal__title');
   modalTitle.textContent = 'Подтверждение заявки';
   reservText.classList.add('modal__text');
-  reservText.textContent = `Бронирование путешествия в Индию на ${peopleSelect} человек`;
+  reservText.textContent = `Бронирование путешествия в Индию на  человек`;
   dateText.classList.add('modal__text');
-  dateText.textContent = `В даты: ${item.date}`;
+  dateText.textContent = `В даты: `;
   priceText.classList.add('modal__text');
-  priceText.textContent = `Стоимость тура ${totalPrice}₽`;
+  priceText.textContent = `Стоимость тура ₽`;
   btnContainer.classList.add('modal__button');
   btnConfirm.classList.add('modal__btn', 'modal__btn_confirm');
   btnConfirm.textContent = 'Подтверждаю';
@@ -33,9 +33,7 @@ const showModal = (data) => {
   modalWindow.append(modalTitle, reservText, dateText, priceText, btnContainer);
   btnContainer.append(btnConfirm, btnChange);
 
-  close.addEventListener('click', () => {
-    overlay.remove();
-  })
+
   document.body.append(overlay);
 };
 
