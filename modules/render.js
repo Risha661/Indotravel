@@ -1,3 +1,5 @@
+import showModal from "./modal.js";
+
 let datesSelect = document.getElementById('reservation__date'); //полная форма бронирования
 let peopleSelect = document.getElementById('reservation__people');
 
@@ -7,10 +9,13 @@ let peopleSelectForm = document.getElementById('tour__people');
 let reservationDate = document.querySelector('.reservation__data'); //Информация о бронировании и цена
 const reservationInfoContainer = document.querySelector('.reservation__info');
 let priceDate = document.querySelector('.reservation__price');
+const reservationBtn = document.querySelector('.reservation__button');
 
-export const loadGoods = (callback) => {
+const url = 'db.json';
+
+export const loadGoods = async (callback) => {
   const xhr = new XMLHttpRequest();
-  xhr.open('GET', 'db.json');
+  xhr.open('GET', url);
   console.log('load');
   xhr.addEventListener('load', () => {
     const data = JSON.parse(xhr.response);
@@ -151,6 +156,21 @@ export const renderGoods = (data) => {
   });
 };
 
+reservationBtn.setAttribute('data-id', 'reservation__button');
+
+
+reservationBtn.addEventListener('click', async () => {
+  const result = await loadGoods(showModal);
+  console.log(result);
+});
+// reservationBtn.addEventListener('click', ({target}) => {
+//   if(target.classList.contains('open')) {
+//     fetchRequest(`${'db.json'}${target.dataset.id}`, {
+//       callback: showModal,
+//     });
+//   }
+// });
+
 const form = document.querySelector('.reservation__form');
 const footerForm = document.querySelector('.footer__form');
 const footerTitle = document.querySelector('.footer__form-title');
@@ -162,6 +182,8 @@ form.addEventListener('submit', (e) => {
   sentData({
     title: form.querySelector('.reservation__input_name').value,
     body: form.querySelector('.reservation__input').value,
+    date: datesSelect.value,
+    countPeople: peopleSelect.value,
   }, (data) => {
     form.textContent = `Бронирование успешно выполнено! Оператор свяжется с Вами в ближайшее время!`;
   });
@@ -176,5 +198,5 @@ footerForm.addEventListener('submit', (e) => {
     footerText.textContent = `Наши менеджеры свяжутся с вами в течение 3-х рабочих дней`;
     footerDiv.innerHTML = '';
   });
-
 });
+
