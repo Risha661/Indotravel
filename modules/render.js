@@ -155,41 +155,24 @@ export const renderGoods = (data) => {
 };
 reservationBtn.setAttribute('data-id', 'reservation__button');
 
-
-
-// reservationBtn.addEventListener('click', ({target}) => {
-//   if(target.classList.contains('open')) {
-//     fetchRequest(`${'db.json'}${target.dataset.id}`, {
-//       callback: showModal,
-//     });
-//   }
-// });
-reservationBtn.addEventListener('click', async () => {
-  const result = await loadGoods(showModal);
-  });
-
-
 const form = document.querySelector('.reservation__form');
 const footerForm = document.querySelector('.footer__form');
 const footerTitle = document.querySelector('.footer__form-title');
 const footerText = document.querySelector('.footer__text');
 const footerDiv = document.querySelector('.footer__input-wrap');
-let title = document.querySelector('.reservation__input_name').value;
-let body = document.querySelector('.reservation__input').value;
-let date = datesSelect.value;
-let countPeople = peopleSelect.value;
-  console.log(title, body, countPeople, date);
 
-form.addEventListener('submit', (e) => {
+form.addEventListener('submit', async (e) => {
   e.preventDefault();
-
-  sentData({
+  let postData = {
     title: form.querySelector('.reservation__input_name').value,
     body: form.querySelector('.reservation__input').value,
     date: datesSelect.value,
     countPeople: peopleSelect.value,
-  }, (data) => {
-    form.textContent = `Бронирование успешно выполнено! Оператор свяжется с Вами в ближайшее время!`;
+  };
+
+  sentData(postData, (data) => {
+    form.textContent = 'Бронирование успешно выполнено! Оператор свяжется с Вами в ближайшее время!';
+    showModal(data.date, data.countPeople);
   });
 });
 

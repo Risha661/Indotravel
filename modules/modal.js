@@ -1,7 +1,7 @@
 import loadStyle from "./loadStyle.js";
 import './render.js';
 
-const showModal = (data) => {
+const showModal = (date, countPeople) => {
   loadStyle('css/modal.css');
   const overlay = document.createElement('div');
   const modalWindow = document.createElement('div');
@@ -18,9 +18,9 @@ const showModal = (data) => {
   modalTitle.classList.add('modal__title');
   modalTitle.textContent = 'Подтверждение заявки';
   reservText.classList.add('modal__text');
-  reservText.textContent = `Бронирование путешествия в Индию на  человек`;
+  reservText.textContent = `Бронирование путешествия в Индию на ${countPeople} человек`;
   dateText.classList.add('modal__text');
-  dateText.textContent = `В даты: `;
+  dateText.textContent = `В даты: ${date}`;
   priceText.classList.add('modal__text');
   priceText.textContent = `Стоимость тура ₽`;
   btnContainer.classList.add('modal__button');
