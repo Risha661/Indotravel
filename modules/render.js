@@ -1,17 +1,23 @@
 import showModal from "./modal.js";
 
-let datesSelect = document.getElementById('reservation__date'); //полная форма бронирования
-let peopleSelect = document.getElementById('reservation__people');
+export let datesSelect = document.getElementById('reservation__date'); //полная форма бронирования
+export let peopleSelect = document.getElementById('reservation__people');
 
-let datesForm = document.getElementById('tour__date'); //первая краткая форма бронирования
-let peopleSelectForm = document.getElementById('tour__people');
+export let datesForm = document.getElementById('tour__date'); //первая краткая форма бронирования
+export let peopleSelectForm = document.getElementById('tour__people');
 
-let reservationDate = document.querySelector('.reservation__data'); //Информация о бронировании и цена
-const reservationInfoContainer = document.querySelector('.reservation__info');
-let priceDate = document.querySelector('.reservation__price');
-const reservationBtn = document.querySelector('.reservation__button');
+export let reservationDate = document.querySelector('.reservation__data'); //Информация о бронировании и цена
+export const reservationInfoContainer = document.querySelector('.reservation__info');
+export let priceDate = document.querySelector('.reservation__price');
+export const reservationBtn = document.querySelector('.reservation__button');
 
-const url = 'db.json';
+export const form = document.querySelector('.reservation__form');
+export const footerForm = document.querySelector('.footer__form');
+export const footerTitle = document.querySelector('.footer__form-title');
+export const footerText = document.querySelector('.footer__text');
+export const footerDiv = document.querySelector('.footer__input-wrap');
+
+export const url = 'db.json';
 
 export const loadGoods = async (callback) => {
   const xhr = new XMLHttpRequest();
@@ -28,7 +34,7 @@ export const loadGoods = async (callback) => {
   xhr.send();
 };
 
-const sentData = (body, callback) => {
+export const sentData = (body, callback) => {
   const xhr = new XMLHttpRequest();
   xhr.open('POST', 'https://jsonplaceholder.typicode.com/posts');
   xhr.addEventListener('load', () => {
@@ -155,11 +161,6 @@ export const renderGoods = (data) => {
 };
 reservationBtn.setAttribute('data-id', 'reservation__button');
 
-const form = document.querySelector('.reservation__form');
-const footerForm = document.querySelector('.footer__form');
-const footerTitle = document.querySelector('.footer__form-title');
-const footerText = document.querySelector('.footer__text');
-const footerDiv = document.querySelector('.footer__input-wrap');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -170,9 +171,9 @@ form.addEventListener('submit', async (e) => {
     countPeople: peopleSelect.value,
   };
 
-  sentData(postData, (data) => {
-    form.textContent = 'Бронирование успешно выполнено! Оператор свяжется с Вами в ближайшее время!';
-    showModal(data.date, data.countPeople);
+  sentData(postData, data => {
+    console.log(postData);
+    showModal(postData, data);
   });
 });
 
