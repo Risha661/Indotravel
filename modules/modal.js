@@ -1,8 +1,8 @@
-import loadStyle from "./loadStyle.js";
+
 import './render.js';
 
 const showModal = (postData, form) => {
-  loadStyle('css/modal.css');
+
   const overlay = document.createElement('div');
   const modalWindow = document.createElement('div');
   const modalTitle = document.createElement('h2');
@@ -22,7 +22,7 @@ const showModal = (postData, form) => {
   dateText.classList.add('modal__text');
   dateText.textContent = `В даты: ${postData.date}`;
   priceText.classList.add('modal__text');
-  priceText.textContent = `Стоимость тура ₽`;
+  priceText.textContent = `Стоимость тура ${postData.total}₽`;
   btnContainer.classList.add('modal__button');
   btnConfirm.classList.add('modal__btn', 'modal__btn_confirm');
   btnConfirm.textContent = 'Подтверждаю';

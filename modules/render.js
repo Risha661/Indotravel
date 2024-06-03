@@ -1,21 +1,22 @@
 import showModal from "./modal.js";
+import loadStyle from "./loadStyle.js";
+const datesSelect = document.getElementById('reservation__date'); //полная форма бронирования
+const peopleSelect = document.getElementById('reservation__people');
 
-export let datesSelect = document.getElementById('reservation__date'); //полная форма бронирования
-export let peopleSelect = document.getElementById('reservation__people');
+const datesForm = document.getElementById('tour__date'); //первая краткая форма бронирования
+const peopleSelectForm = document.getElementById('tour__people');
 
-export let datesForm = document.getElementById('tour__date'); //первая краткая форма бронирования
-export let peopleSelectForm = document.getElementById('tour__people');
+const reservationDate = document.querySelector('.reservation__data'); //Информация о бронировании и цена
+const reservationInfoContainer = document.querySelector('.reservation__info');
+const priceDate = document.querySelector('.reservation__price');
+const reservationBtn = document.querySelector('.reservation__button');
 
-export let reservationDate = document.querySelector('.reservation__data'); //Информация о бронировании и цена
-export const reservationInfoContainer = document.querySelector('.reservation__info');
-export let priceDate = document.querySelector('.reservation__price');
-export const reservationBtn = document.querySelector('.reservation__button');
-
-export const form = document.querySelector('.reservation__form');
-export const footerForm = document.querySelector('.footer__form');
-export const footerTitle = document.querySelector('.footer__form-title');
-export const footerText = document.querySelector('.footer__text');
-export const footerDiv = document.querySelector('.footer__input-wrap');
+const form = document.querySelector('.reservation__form');
+const footerForm = document.querySelector('.footer__form');
+const footerTitle = document.querySelector('.footer__form-title');
+const footerText = document.querySelector('.footer__text');
+const footerDiv = document.querySelector('.footer__input-wrap');
+let totalPrice = 0;
 
 export const url = 'db.json';
 
@@ -30,7 +31,6 @@ export const loadGoods = async (callback) => {
   xhr.addEventListener('error', () => {
     console.log('error');
   });
-
   xhr.send();
 };
 
@@ -144,7 +144,7 @@ export const renderGoods = (data) => {
   peopleSelect.addEventListener('change', () => {
     const selectedDate = datesSelect.value;
     const selectedPeople = parseInt(peopleSelect.value);
-    let totalPrice = 0;
+    
 
     data.forEach(item => {
       if (selectedDate === item.date) {
@@ -159,16 +159,18 @@ export const renderGoods = (data) => {
     reservationPrice.textContent = `${totalPrice}₽`;
   });
 };
-reservationBtn.setAttribute('data-id', 'reservation__button');
 
+reservationBtn.setAttribute('data-id', 'reservation__button');
 
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
+  await loadStyle('css/modal.css');
   let postData = {
     title: form.querySelector('.reservation__input_name').value,
     body: form.querySelector('.reservation__input').value,
     date: datesSelect.value,
     countPeople: peopleSelect.value,
+    total: totalPrice,
   };
 
   sentData(postData, data => {

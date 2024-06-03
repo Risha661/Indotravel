@@ -5,7 +5,7 @@ import {renderGoods, loadGoods} from './modules/render.js';
 
 {
   const init = () => {
-    timer('2024/05/21 18:00');
+    timer('2024/07/21 18:00');
   }
 
   loadGoods(renderGoods);
