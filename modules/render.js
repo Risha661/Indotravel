@@ -175,11 +175,11 @@ const phoneCheck = document.getElementById('reservation__phone');
 
 
 nameCheck.addEventListener('input', () => {
-  const nameRegex = /^[а-яА-ЯЁё\s]+$/;
+  const nameRegex = /^([а-яА-ЯЁё]+\s){2,}[а-яА-ЯЁё]+$/;
   const nameValue = nameCheck.value;
 
   if (!nameRegex.test(nameValue)) {
-    nameCheck.setCustomValidity('Имя должно содержать только кириллические буквы и пробелы');
+    nameCheck.setCustomValidity('ФИО должно быть введено полностью, через пробелы, только кириллический ввод!');
   } else {
     nameCheck.setCustomValidity('');
   }
@@ -190,7 +190,7 @@ phoneCheck.addEventListener('input', () => {
   const phoneValue = phoneCheck.value;
 
   if (!phoneRegex.test(phoneValue)) {
-    phoneCheck.setCustomValidity('Номер телефона должен начинаться с "+" и содержать только цифры');
+    phoneCheck.setCustomValidity('Номер телефона должен начинаться с "+" и содержать только цифры? без пробелов');
   } else {
     phoneCheck.setCustomValidity('');
   }
