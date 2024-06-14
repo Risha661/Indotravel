@@ -162,21 +162,59 @@ export const renderGoods = (data) => {
 
 reservationBtn.setAttribute('data-id', 'reservation__button');
 
+// const validateName = (nameCheck) => {
+//   return /^[А-ЯЁа-яё\s]+$/.test(nameCheck);
+// }
+
+// const validatePhone = (phoneCheck) => {
+//   return /^[+0-9]+$/.test(phoneCheck);
+// }
+
+const nameCheck = form.querySelector('.reservation__input_name');
+const phoneCheck = document.getElementById('reservation__phone');
+
+
+nameCheck.addEventListener('input', () => {
+  const nameRegex = /^[а-яА-ЯЁё\s]+$/;
+  const nameValue = nameCheck.value;
+
+  if (!nameRegex.test(nameValue)) {
+    nameCheck.setCustomValidity('Имя должно содержать только кириллические буквы и пробелы');
+  } else {
+    nameCheck.setCustomValidity('');
+  }
+});
+
+phoneCheck.addEventListener('input', () => {
+  const phoneRegex = /^\+\d{11}$/;
+  const phoneValue = phoneCheck.value;
+
+  if (!phoneRegex.test(phoneValue)) {
+    phoneCheck.setCustomValidity('Номер телефона должен начинаться с "+" и содержать только цифры');
+  } else {
+    phoneCheck.setCustomValidity('');
+  }
+});
+
+
 form.addEventListener('submit', async (e) => {
   e.preventDefault();
-  await loadStyle('css/modal.css');
-  let postData = {
-    title: form.querySelector('.reservation__input_name').value,
-    body: form.querySelector('.reservation__input').value,
-    date: datesSelect.value,
-    countPeople: peopleSelect.value,
-    total: totalPrice,
-  };
 
-  sentData(postData, data => {
-    console.log(postData);
-    showModal(postData, data);
-  });
+  if (nameCheck.checkValidity() && phoneCheck.checkValidity()) {
+    await loadStyle('css/modal.css');
+    let postData = {
+      title: nameCheck.value,
+      body: form.querySelector('.reservation__input').value,
+      date: datesSelect.value,
+      countPeople: peopleSelect.value,
+      total: totalPrice,
+    };
+
+    sentData(postData, data => {
+      console.log(postData);
+      showModal(postData, data);
+    });
+  }
 });
 
 footerForm.addEventListener('submit', (e) => {
