@@ -1,6 +1,7 @@
 import {timer} from './modules/timer.js';
 import './modules/burger.js';
 import './modules/scroll.js';
+import './modules/inputmask.js';
 import {renderGoods, loadGoods} from './modules/render.js';
 
 {
