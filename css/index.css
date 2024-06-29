@@ -494,9 +494,15 @@ p {
 		margin: 0;
 }
 
+.container-album {
+	max-width: 1300px;
+	padding: 0 60px;
+	margin: 0 auto;
+}
+
 .container {
-		max-width: 1300px;
-		padding: 0 60px;
+		max-width: 1400px;
+		padding: 0;
 		margin: 0 auto;
 }
 
@@ -1475,19 +1481,20 @@ p {
 		padding: 75px 0;
 }
 
-.album__slider {
+.swiper {
 		position: relative;
 }
 
-.album__item {
+.swiper-slide {
 		width: auto;
+		padding-left: 35px;
 }
 
-.album__left {
+.swiper-button-prev {
 		position: absolute;
 		content: "";
-		width: 90px;
-		height: 90px;
+		width: 80px;
+		height: 80px;
 		top: 50%;
 		left: 130px;
 		-webkit-transform: translateY(-50%);
@@ -1499,18 +1506,18 @@ p {
 		border-radius: 50%;
 }
 
-.album__left:focus {
+.swiper-button-prev:focus {
 		background-color: #AFAFAF;
 }
 
-.album__left:active {
+.swiper-button-prev:active {
 		-webkit-transform: translateY(-50%) rotate(180deg);
 		-ms-transform: translateY(-50%) rotate(180deg);
 		transform: translateY(-50%) rotate(180deg);
 		background: url("../img/album/arrow-right-active.svg") center/contain no-repeat;
 }
 
-.album__right {
+.swiper-button-next {
 		position: absolute;
 		content: "";
 		width: 90px;
@@ -1526,11 +1533,11 @@ p {
 		border-radius: 50%;
 }
 
-.album__right:focus {
+.swiper-button-next:focus {
 		background-color: #AFAFAF;
 }
 
-.album__right:active {
+.swiper-button-next:active {
 		background: url("../img/album/arrow-right-active.svg") center/contain no-repeat;
 }
 
@@ -2118,15 +2125,15 @@ p {
 				margin-bottom: 60px;
 		}
 
-		.album__item {
+		.swiper-slide {
 				max-width: 822px;
 		}
 
-		.album__left {
+		.swiper-button-prev {
 				left: 40px;
 		}
 
-		.album__right {
+		.swiper-button-next {
 				right: 40px;
 		}
 
@@ -2601,15 +2608,15 @@ p {
 				max-width: 420px;
 		}
 
-		.album__item {
+		.swiper-slide {
 				max-width: unset;
 		}
 
-		.album__left {
+		.swiper-button-prev {
 				left: 34px;
 		}
 
-		.album__right {
+		.swiper-button-next {
 				right: 34px;
 		}
 
@@ -2733,14 +2740,14 @@ p {
 		}
 
 
-		.album__left:hover {
+		.swiper-button-prev:hover {
 				-webkit-transform: translateY(-50%) rotate(180deg);
 				-ms-transform: translateY(-50%) rotate(180deg);
 				transform: translateY(-50%) rotate(180deg);
 				background: url("../img/album/arrow-right-black.svg") center/contain no-repeat;
 		}
 
-		.album__right:hover {
+		.swiper-button-next:hover {
 				background: url("../img/album/arrow-right-black.svg") center/contain no-repeat;
 		}
 
@@ -3062,13 +3069,13 @@ p {
 				margin-bottom: 15px;
 		}
 
-		.album__left {
+		.swiper-button-prev {
 				width: 34px;
 				height: 34px;
 				left: 25px;
 		}
 
-		.album__right {
+		.swiper-button-next {
 				width: 34px;
 				height: 34px;
 				right: 25px;

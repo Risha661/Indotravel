@@ -3,6 +3,7 @@ import './modules/burger.js';
 import './modules/scroll.js';
 import './modules/validate.js';
 import './modules/inputmask.js';
+import './modules/swiper.js';
 
 import {renderGoods, loadGoods} from './modules/render.js';
 
