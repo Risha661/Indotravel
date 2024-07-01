@@ -5,11 +5,10 @@ const loadStyle = (url, callback) => {
     callback();
     return;
   }
-  const link = document.createElement('link');
-  link.rel = 'stylesheet';
+  const link = document.createElement("link");
+  link.rel = "stylesheet";
   link.href = url;
-  link.addEventListener('load', () => {
-  });
+  link.addEventListener("load", () => {});
   document.head.append(link);
 };
 

@@ -1,4 +1,4 @@
-const fly = document.createElement('div');
+const fly = document.createElement("div");
 const docEl = document.documentElement;
 let lastScrollTop = 0;
 
@@ -31,6 +31,6 @@ const calcPositionFly = () => {
   }
 };
 
-window.addEventListener('scroll', calcPositionFly);
+window.addEventListener("scroll", calcPositionFly);
 
 calcPositionFly();
