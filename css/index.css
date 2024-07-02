@@ -494,15 +494,9 @@ p {
 		margin: 0;
 }
 
-.container-album {
-	max-width: 1300px;
-	padding: 0 60px;
-	margin: 0 auto;
-}
-
 .container {
-		max-width: 1400px;
-		padding: 0;
+		max-width: 1300px;
+		padding: 0 60px;
 		margin: 0 auto;
 }
 
@@ -1481,20 +1475,19 @@ p {
 		padding: 75px 0;
 }
 
-.swiper {
+.album__slider {
 		position: relative;
 }
 
-.swiper-slide {
+.album__item {
 		width: auto;
-		padding-left: 35px;
 }
 
 .swiper-button-prev {
 		position: absolute;
 		content: "";
-		width: 80px;
-		height: 80px;
+		width: 90px;
+		height: 90px;
 		top: 50%;
 		left: 130px;
 		-webkit-transform: translateY(-50%);
@@ -2125,15 +2118,15 @@ p {
 				margin-bottom: 60px;
 		}
 
-		.swiper-slide {
+		.album__item {
 				max-width: 822px;
 		}
 
-		.swiper-button-prev {
+		.album__left {
 				left: 40px;
 		}
 
-		.swiper-button-next {
+		.album__right {
 				right: 40px;
 		}
 
@@ -2608,15 +2601,15 @@ p {
 				max-width: 420px;
 		}
 
-		.swiper-slide {
+		.album__item {
 				max-width: unset;
 		}
 
-		.swiper-button-prev {
+		.album__left {
 				left: 34px;
 		}
 
-		.swiper-button-next {
+		.album__right {
 				right: 34px;
 		}
 
@@ -2740,14 +2733,14 @@ p {
 		}
 
 
-		.swiper-button-prev:hover {
+		.album__left:hover {
 				-webkit-transform: translateY(-50%) rotate(180deg);
 				-ms-transform: translateY(-50%) rotate(180deg);
 				transform: translateY(-50%) rotate(180deg);
 				background: url("../img/album/arrow-right-black.svg") center/contain no-repeat;
 		}
 
-		.swiper-button-next:hover {
+		.album__right:hover {
 				background: url("../img/album/arrow-right-black.svg") center/contain no-repeat;
 		}
 
@@ -3069,13 +3062,13 @@ p {
 				margin-bottom: 15px;
 		}
 
-		.swiper-button-prev {
+		.album__left {
 				width: 34px;
 				height: 34px;
 				left: 25px;
 		}
 
-		.swiper-button-next {
+		.album__right {
 				width: 34px;
 				height: 34px;
 				right: 25px;

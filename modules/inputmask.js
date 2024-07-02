@@ -1,4 +1,6 @@
 const inputTel = document.getElementById("reservation__phone");
-const telMask = new Inputmask("+7 (999)-999-99-99");
+const telMask = new Inputmask({
+  mask: "+79999999999",
+});
 
 telMask.mask(inputTel);

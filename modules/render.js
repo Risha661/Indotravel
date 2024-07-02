@@ -165,10 +165,12 @@ export const renderGoods = (data) => {
 
 reservationBtn.setAttribute("data-id", "reservation__button");
 
-nameCheck.addEventListener("input", () => {
-  const nameRegex = /^([а-яА-ЯЁё]+\s){2,}[а-яА-ЯЁё]+$/;
-  const nameValue = nameCheck.value;
+const nameRegex = /^([а-яА-ЯЁё]+\s){2,}[а-яА-ЯЁё]+$/;
 
+const phoneRegex = /^\+\d{11}$/;
+
+nameCheck.addEventListener("input", () => {
+  const nameValue = nameCheck.value;
   if (!nameRegex.test(nameValue)) {
     nameCheck.setCustomValidity(
       "ФИО должно быть введено полностью, через пробелы, только кириллический ввод!"
@@ -179,9 +181,8 @@ nameCheck.addEventListener("input", () => {
 });
 
 phoneCheck.addEventListener("input", () => {
-  const phoneRegex = /^\+\d{11}$/;
   const phoneValue = phoneCheck.value;
-
+  console.log(phoneCheck.value);
   if (!phoneRegex.test(phoneValue)) {
     phoneCheck.setCustomValidity(
       'Номер телефона должен начинаться с "+" и содержать только цифры? без пробелов'
@@ -193,8 +194,7 @@ phoneCheck.addEventListener("input", () => {
 
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
-
-  if (nameCheck.checkValidity() && phoneCheck.checkValidity()) {
+  if (nameCheck.checkValidity() || phoneCheck.checkValidity()) {
     await loadStyle("css/modal.css");
     let postData = {
       title: nameCheck.value,
